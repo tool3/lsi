@@ -22,12 +22,13 @@ class Item {
 
     public async getItemStats(): Promise<void> {
         this.stats = await this.getStats(this.name);
+        this.size = this.stats.size;
         this.calculateUnit();
     }
 
     public calculateUnit(): void {
         let size: number = this.stats.size;
-        if (this.stats.size > 1073741824) {
+        if (this.stats.size >= 1000000000) {
             this.unit = 'GB';
             this.unitColor = 'red';
             this.size = Number((size / 1000 / 1000 / 1000).toFixed(2));
@@ -71,6 +72,7 @@ class Main {
 
     public async makeList() {
         let length: number = this.list.length;
+        this.print('.', 'gray', '');
 
         for await (const i of this.list) {
             length--;
@@ -80,7 +82,6 @@ class Main {
             const spaceSize: number = this.longest - item.length + 2;
             const color: string = this.getItemColor(item);
             const char: string = length === 0 ? chars.end : chars.middle;
-
             this.print(char, color, item.format(spaceSize));
         }
         this.logTotal();
