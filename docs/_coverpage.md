@@ -5,4 +5,4 @@
 [<i class="fab fa-github"></i> Github](https://github.com/tool3/lsi)
 [Get Started](/#lsi)
 
-![background]("#BA98F1")
+![color](#BA98F1")
