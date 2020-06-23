@@ -5,11 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "tsc",
+    "prepublish": "npm run build"
   },
   "bin": {
     "lsi": "./index.js"
   },
+  "files": [
+    "dist/"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
