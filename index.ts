@@ -32,9 +32,15 @@ class Main {
             const { unitColor, size, unit } = this.calculateUnit(stats)
             const color: string = this.getColor(stats);
             let char: string = chars['middle'];
+
             if (length === 0) char = chars['end'];
-            // console.log(`${char} ${colors[color]}${colors['reset']}`);
-            this.print(char, color, `${item}${colors['reset']}${' '.repeat(spaceSize)}${colors['white']}${size} ${colors[unitColor]}${unit}`);
+
+            const formattedItem: string = `${item}${colors['reset']}`;
+            const formattedSpace: string = `${' '.repeat(spaceSize)}`;
+            const formattedSize: string = ` ${colors['white']}${size} `;
+            const formattedUnit: string = `${colors[unitColor]}${unit}`;
+
+            this.print(char, color, formattedItem + formattedSpace + formattedSize + formattedUnit);
         }
         this.logTotal();
     }
@@ -42,18 +48,18 @@ class Main {
     public calculateUnit(stats: Stats): Record<string, string | number> {
         let size: number = stats.size;
         let unitColor: string = 'gray';
-        let unit: string = "B";
+        let unit: string = 'B';
 
         if (stats.size > 1073741824) {
-            unit = "GB";
+            unit = 'GB';
             unitColor = 'red';
             size = Number((size / 1000 / 1000 / 1000).toFixed(2));
         } else if (stats.size > 1000000) {
-            unit = "MB";
+            unit = 'MB';
             unitColor = 'yellow';
             size = Number((size / 1000 / 1000).toFixed(2));
         } else if (stats.size > 1000) {
-            unit = "KB";
+            unit = 'KB';
             unitColor = 'green';
             size = Number((size / 1000).toFixed(2));
         }
@@ -72,11 +78,11 @@ class Main {
     }
 
     public logTotal(): void {
-        console.log(`\n${colors['gray']} ${this.directoryCount} directories, ${this.fileCount} files${colors['reset']}`);
+        this.print('\n', 'gray', ` ${this.directoryCount} directories, ${this.fileCount} files${colors['reset']}`);
     };
 
     public print(char: string, color: string, item: string) {
-        console.log(`${char} ${colors[color]}${item}${colors['reset']}`)
+        console.log(`${char} ${colors[color]}${item}${colors['reset']}`);
     }
 }
 
