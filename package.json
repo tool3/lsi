@@ -1,6 +1,6 @@
 {
   "name": "lsi",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "a slightly better ls",
   "main": "index.js",
   "scripts": {
