@@ -14,7 +14,10 @@
   "files": [
     "dist"
   ],
-  "keywords": [],
+  "keywords": [
+    "ls",
+    "cli"
+  ],
   "author": "Tal Hayut",
   "license": "MIT",
   "devDependencies": {
