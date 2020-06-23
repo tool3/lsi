@@ -5,70 +5,89 @@ import colors from './consts/colors';
 import chars from './consts/chars';
 import { promisify } from 'util';
 
+class Item {
+    public size: number = 0;
+    public length: number = 0;
+    public name: string = "";
+    public unit: string = "B";
+    public unitColor: string = "gray";
+    public getStats: Function = promisify(fs.lstat);
+    public stats: Stats;
+
+    constructor(name: string) {
+        this.name = name;
+        this.length = name.length;
+        this.stats = this.getStats(name);
+    }
+
+    public async getItemStats(): Promise<void> {
+        this.stats = await this.getStats(this.name);
+        this.calculateUnit();
+    }
+
+    public calculateUnit(): void {
+        let size: number = this.stats.size;
+        if (this.stats.size > 1073741824) {
+            this.unit = 'GB';
+            this.unitColor = 'red';
+            this.size = Number((size / 1000 / 1000 / 1000).toFixed(2));
+        } else if (this.stats.size > 1000000) {
+            this.unit = 'MB';
+            this.unitColor = 'yellow';
+            this.size = Number((size / 1000 / 1000).toFixed(2));
+        } else if (this.stats.size > 1000) {
+            this.unit = 'KB';
+            this.unitColor = 'green';
+            this.size = Number((size / 1000).toFixed(2));
+        }
+    }
+
+    public isDirectory(): Boolean {
+        return this.stats.isDirectory();
+    }
+
+    public format(spaceSize: number,): string {
+        const formattedItem: string = `${this.name}${colors.reset}`;
+        const formattedSpace: string = `${' '.repeat(spaceSize)}`;
+        const formattedSize: string = ` ${colors.white}${this.size} `;
+        const formattedUnit: string = `${colors[this.unitColor]}${this.unit}`;
+        return formattedItem + formattedSpace + formattedSize + formattedUnit;
+    }
+
+}
+
 class Main {
     public listDir: Function = promisify(fs.readdir);
-    public statItem: Function = promisify(fs.lstat);
-    public items: Array<string> = [];
+    public list: Array<string> = [];
     public directoryCount: number = 0;
     public longest: number = 0;
     public fileCount: number = 0;
 
-    constructor() {
-    }
-
     public async readDirectory() {
-        this.items = await this.listDir(process.cwd());
-        this.longest = this.items.reduce((a, b) => a.length > b.length ? a : b, '').length;
+        this.list = await this.listDir(process.cwd());
+        this.longest = this.list.reduce((a, b) => a.length > b.length ? a : b, "").length;
         return this;
     }
 
-    public async list() {
-        let length: number = this.items.length;
+    public async makeList() {
+        let length: number = this.list.length;
 
-        for await (const item of this.items) {
+        for await (const i of this.list) {
             length--;
+            const item: Item = new Item(i);
+            await item.getItemStats();
+
             const spaceSize: number = this.longest - item.length + 2;
-            const stats: Stats = await this.statItem(item);
-            const { unitColor, size, unit } = this.calculateUnit(stats)
-            const color: string = this.getColor(stats);
-            let char: string = chars['middle'];
+            const color: string = this.getItemColor(item);
+            const char: string = length === 0 ? chars.end : chars.middle;
 
-            if (length === 0) char = chars['end'];
-
-            const formattedItem: string = `${item}${colors['reset']}`;
-            const formattedSpace: string = `${' '.repeat(spaceSize)}`;
-            const formattedSize: string = ` ${colors['white']}${size} `;
-            const formattedUnit: string = `${colors[unitColor]}${unit}`;
-
-            this.print(char, color, formattedItem + formattedSpace + formattedSize + formattedUnit);
+            this.print(char, color, item.format(spaceSize));
         }
         this.logTotal();
     }
 
-    public calculateUnit(stats: Stats): Record<string, string | number> {
-        let size: number = stats.size;
-        let unitColor: string = 'gray';
-        let unit: string = 'B';
-
-        if (stats.size > 1073741824) {
-            unit = 'GB';
-            unitColor = 'red';
-            size = Number((size / 1000 / 1000 / 1000).toFixed(2));
-        } else if (stats.size > 1000000) {
-            unit = 'MB';
-            unitColor = 'yellow';
-            size = Number((size / 1000 / 1000).toFixed(2));
-        } else if (stats.size > 1000) {
-            unit = 'KB';
-            unitColor = 'green';
-            size = Number((size / 1000).toFixed(2));
-        }
-
-        return { unitColor, size, unit };
-    }
-
-    public getColor(stats: Stats): string {
-        if (stats.isDirectory()) {
+    public getItemColor(item: Item): string {
+        if (item.isDirectory()) {
             this.directoryCount++;
             return 'blue';
         } else {
@@ -78,12 +97,12 @@ class Main {
     }
 
     public logTotal(): void {
-        this.print('\n', 'gray', ` ${this.directoryCount} directories, ${this.fileCount} files${colors['reset']}`);
+        this.print('\n', 'gray', ` ${this.directoryCount} directories, ${this.fileCount} files${colors.reset}`);
     };
 
     public print(char: string, color: string, item: string) {
-        console.log(`${char} ${colors[color]}${item}${colors['reset']}`);
+        console.log(`${char} ${colors[color]}${item}${colors.reset}`);
     }
 }
 
-new Main().readDirectory().then(async (main) => await main.list());
+new Main().readDirectory().then(async main => await main.makeList());
