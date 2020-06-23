@@ -1,4 +1,4 @@
-const colors = {
+const colors: Record<string, string> = {
     green: '\x1b[32;1m',
     gray: '\x1b[36;0m',
     white: '\x1b[97m',
@@ -10,4 +10,4 @@ const colors = {
     reset: '\x1b[0m'
 };
 
-module.exports = colors;
+export default colors;
