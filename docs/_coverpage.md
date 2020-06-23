@@ -1,5 +1,3 @@
-# lsi <small>1.0</small>
-
 ![logo](./lsi.png)
 
 > slightly better ls

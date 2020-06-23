@@ -1,9 +1,8 @@
-# lsi
+![lsi](./docs/lsi.png)
+enhanced `ls`
 
-enhanced `ls`  
-pronounced `ls·info`
+> pronounced `ls·info`
 
-![](./docs/lsi.png)
 ![](./docs/lsi_example.png)
 
 # features
