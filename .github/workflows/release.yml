@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@master
       - uses: tool3/bump@master
         with:
-          github_token: ${{ secrets.GP_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           unrelated: true
 
   publish:
@@ -22,6 +22,6 @@ jobs:
       - uses: actions/checkout@v1
       - uses: tool3/publisher@master
         with:
-          github_token: ${{ secrets.GP_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           npm_token: ${{ secrets.NPM_TOKEN }}
           scope: "@tool3"
