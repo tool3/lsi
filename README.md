@@ -1,4 +1,4 @@
-![lsi](./docs/lsi.png)
+![lsi](./docs/lsi.png)  
 enhanced `ls`
 
 > pronounced `ls·info`
