@@ -1,5 +1,5 @@
 ![lsi](./lsi.png)  
-enhanced `ls`
+a simple enhancement to `ls` written in typescript
 
 # lsi
 
@@ -12,4 +12,4 @@ enhanced `ls`
 - tree list
 - size information (color-coded)
 - directory/file differentiation (color-coded)
-- total counter
+- total directory/files counter
