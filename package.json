@@ -1,6 +1,6 @@
 {
   "name": "lsi",
-  "version": "0.1.7",
+  "version": "0.2.7",
   "description": "a slightly better ls",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "prepublish": "npm run build"
   },
   "bin": {
-    "lsi": "./index.js"
+    "lsi": "./dist/index.js"
   },
   "files": [
     "dist"

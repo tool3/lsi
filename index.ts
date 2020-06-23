@@ -80,4 +80,4 @@ class Main {
     }
 }
 
-new Main().readDirectory().then(async (main) => await main.list());;
+new Main().readDirectory().then(async (main) => await main.list());
