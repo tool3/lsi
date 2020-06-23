@@ -19,6 +19,11 @@ jobs:
     needs: tag
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: |
+          npm ci
       - uses: actions/checkout@v1
       - uses: tool3/publisher@master
         with:
