@@ -25,3 +25,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           npm_token: ${{ secrets.NPM_TOKEN }}
           scope: "@tool3"
+      - run: npm ci
