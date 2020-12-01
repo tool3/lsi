@@ -1,0 +1,23 @@
+{
+  "help": [
+    ". \u001b[36;0m\u001b[0m",
+    "├── \u001b[34;1m.git\u001b[0m                \u001b[97m384 \u001b[36;0mB\u001b[0m",
+    "├── \u001b[34;1m.github\u001b[0m             \u001b[97m96 \u001b[36;0mB\u001b[0m",
+    "├── \u001b[36;0m.gitignore\u001b[0m          \u001b[97m1.83 \u001b[32;1mKB\u001b[0m",
+    "├── \u001b[34;1m.vscode\u001b[0m             \u001b[97m96 \u001b[36;0mB\u001b[0m",
+    "├── \u001b[36;0mLICENSE\u001b[0m             \u001b[97m1.07 \u001b[32;1mKB\u001b[0m",
+    "├── \u001b[36;0mREADME.md\u001b[0m           \u001b[97m380 \u001b[36;0mB\u001b[0m",
+    "├── \u001b[34;1mconsts\u001b[0m              \u001b[97m128 \u001b[36;0mB\u001b[0m",
+    "├── \u001b[34;1mdist\u001b[0m                \u001b[97m160 \u001b[36;0mB\u001b[0m",
+    "├── \u001b[34;1mdocs\u001b[0m                \u001b[97m320 \u001b[36;0mB\u001b[0m",
+    "├── \u001b[36;0mindex.ts\u001b[0m            \u001b[97m3.45 \u001b[32;1mKB\u001b[0m",
+    "├── \u001b[34;1mnode_modules\u001b[0m        \u001b[97m3.07 \u001b[32;1mKB\u001b[0m",
+    "├── \u001b[36;0mpackage-lock.json\u001b[0m   \u001b[97m35.41 \u001b[32;1mKB\u001b[0m",
+    "├── \u001b[36;0mpackage.json\u001b[0m        \u001b[97m618 \u001b[36;0mB\u001b[0m",
+    "├── \u001b[34;1mtests\u001b[0m               \u001b[97m128 \u001b[36;0mB\u001b[0m",
+    "└── \u001b[36;0mtsconfig.json\u001b[0m       \u001b[97m194 \u001b[36;0mB\u001b[0m",
+    "",
+    " \u001b[36;0m 8 directories, 7 files\u001b[0m\u001b[0m",
+    ""
+  ]
+}

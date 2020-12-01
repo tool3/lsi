@@ -11,7 +11,7 @@ class Item {
     public name: string = "";
     public unit: string = "B";
     public unitColor: string = "gray";
-    public getStats: Function = promisify(fs.lstat);
+    public getStats: Function = promisify(fs.stat);
     public stats: Stats;
 
     constructor(name: string) {
