@@ -4,7 +4,7 @@
   "description": "a slightly better ls",
   "main": "index.js",
   "scripts": {
-    "test": "echo 'no tests'",
+    "test": "mocha -r ts-node/register tests/*.test.ts",
     "build": "tsc"
   },
   "repository": {
@@ -23,7 +23,10 @@
   "author": "Tal Hayut",
   "license": "MIT",
   "devDependencies": {
+    "@types/mocha": "^8.0.4",
     "@types/node": "^14.0.13",
+    "mocha": "^8.2.1",
+    "snaptdout": "^1.4.1",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.5"
   }
